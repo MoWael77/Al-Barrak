@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Barrak</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            direction: rtl;
+        }
+        
+        /* Navbar Wrapper */
+        .navbar-wrapper {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        /* Main Navigation Bar */
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .main-nav.scrolled {
+            background-color: #1B4F4D;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .main-nav.scrolled .nav-link {
+            color: #fff;
+        }
+        
+        .main-nav.scrolled .dropdown-content {
+            background-color: #1B4F4D;
+            border-color: rgba(255,255,255,0.1);
+        }
+        
+        .main-nav.scrolled .dropdown-content a {
+            color: #fff;
+        }
+        
+        .main-nav.scrolled .dropdown-content a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .main-nav.scrolled .mobile-menu-btn {
+            color: #fff;
+        }
+        
+        /* Left side navigation */
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        /* Right side navigation */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        /* Center logo - Updated */
+        .nav-logo {
+            position: absolute;
+            left: 45%;
+            transform: translateX(-50%);
+            transform: translateY(23%);
+        }
+        
+        .nav-logo img {
+            width: 100px; /* Increased logo size */
+            height: auto;
+        }
+        
+        /* Navigation links */
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            position: relative;
+            white-space: nowrap;
+        }
+        
+        .main-nav.scrolled .nav-link {
+            color: #fff;
+        }
+        
+        .nav-link i {
+            font-size: 12px;
+            transition: transform 0.3s;
+        }
+        
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #fff;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            z-index: 100;
+            padding: 10px 0;
+            border: 1px solid #eee;
+        }
+        
+        .dropdown-content a {
+            padding: 8px 16px;
+            display: block;
+            color: #333;
+            font-size: 14px;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f5f5f5;
+            padding-right: 20px;
+        }
+        
+        .dropdown.active .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown.active > a i {
+            transform: rotate(180deg);
+        }
+        
+        /* Cart indicator */
+        .cart-indicator {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+        
+        /* Search Extension Styles */
+        .search-extension {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 2000;
+            padding: 20px;
+            display: none;
+            overflow-y: auto;
+        }
+        
+        .search-extension.active {
+            display: block;
+        }
+        
+        #exit-search-extension-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .search-extension h3 {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .search-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .search-result-item {
+            border: 1px solid #eee;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        /* Search Input Styles */
+        .search-container {
+            display: flex;
+            margin: 0 auto;
+            max-width: 600px;
+            position: relative;
+        }
+        
+        #search-input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        #search-input:focus {
+            outline: none;
+            border-color: teal;
+        }
+        
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        /* Mobile menu styles */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            padding: 70px 20px 20px;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu .nav-link {
+            display: flex;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            width: 100%;
+        }
+        
+        .mobile-menu .dropdown-content {
+            position: static;
+            box-shadow: none;
+            border: none;
+            display: none;
+            padding-right: 15px;
+        }
+        
+        .mobile-menu .dropdown.active .dropdown-content {
+            display: block;
+        }
+        
+        .mobile-menu-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+        
+        .mobile-menu-backdrop.active {
+            display: block;
+        }
+        
+        /* Location dropdown styles */
+        .location-dropdown .dropdown-content {
+            min-width: 250px;
+            padding: 15px;
+        }
+        
+        .location-dropdown .dropdown-content p {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-link span {
+                display: none;
+            }
+            
+            .nav-link i {
+                font-size: 18px;
+            }
+            
+            .nav-left, .nav-right {
+                gap: 15px;
+            }
+            
+            .nav-logo img {
+                width: 130px; /* Slightly smaller on medium screens */
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-left {
+                display: none;
+            }
+            
+            .nav-logo {
+                position: static;
+                transform: none;
+                margin: 0 auto;
+            }
+            
+            .main-nav {
+                justify-content: space-between;
+            }
+            
+            .nav-logo img {
+                width: 120px; /* Slightly smaller on mobile */
+            }
+            
+            .nav-right .nav-link span {
+                display: none;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+            
+            .dropdown:hover > a i {
+                transform: rotate(180deg);
+            }
+        }
+
+        /* Modify the existing active class to only apply to mobile */
+        @media (max-width: 768px) {
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+            
+            .dropdown.active > a i {
+                transform: rotate(180deg);
+            }
+        }
+
+        /* New Sections Styles */
+        .main-content {
+            margin-top: 80px; /* To account for fixed navbar */
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 500px;
+            background-image: url('https://via.placeholder.com/1920x500');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 0 100px;
+            position: relative;
+        }
+
+        .hero-content {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            max-width: 500px;
+            border-radius: 5px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #1B4F4D;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #1B4F4D;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #0E2E2C;
+        }
+
+        /* Categories Section */
+        .categories-section {
+            padding: 60px 20px;
+            background-color: #f9f9f9;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #1B4F4D;
+            font-size: 2rem;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-img {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .category-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .category-info h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 60px 20px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .product-price {
+            color: #1B4F4D;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            background-color: #1B4F4D;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #0E2E2C;
+        }
+
+        /* Offers Section */
+        .offers-section {
+            padding: 60px 20px;
+            background-color: #f9f9f9;
+        }
+
+        .offer-banner {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #1B4F4D;
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .offer-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .offer-banner p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1B4F4D;
+            color: white;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar-wrapper">
+        <nav class="main-nav">
+            <!-- Mobile menu button -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <!-- Left side navigation (hidden on mobile) -->
+            <div class="nav-left">
+                <div class="dropdown">
+                    <a href="#" class="nav-link">
+                        <span>الأدوات الصحية</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#">أدوات صحية 1</a>
+                        <a href="#">أدوات صحية 2</a>
+                        <a href="#">أدوات صحية 3</a>
+                        <a href="#">أدوات صحية 4</a>
+                        <a href="#">أدوات صحية 5</a>
+                    </div>
+                </div>
+                
+                <div class="dropdown">
+                    <a href="#" class="nav-link">
+                        <span>السيراميك والبورسلين</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#">سيراميك 1</a>
+                        <a href="#">سيراميك 2</a>
+                        <a href="#">بورسلين 1</a>
+                        <a href="#">بورسلين 2</a>
+                        <a href="#">أرضيات</a>
+                    </div>
+                </div>
+                
+                <div class="dropdown">
+                    <a href="#" class="nav-link">
+                        <span>مطابخ إيطالية</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#">مطابخ حديثة</a>
+                        <a href="#">مطابخ كلاسيكية</a>
+                        <a href="#">مطابخ خشبية</a>
+                        <a href="#">مطابخ مودرن</a>
+                    </div>
+                </div>
+                
+                <div class="dropdown">
+                    <a href="#" class="nav-link">
+                        <span>الديكور والموزاييك</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#">ديكور داخلي</a>
+                        <a href="#">ديكور خارجي</a>
+                        <a href="#">موزاييك</a>
+                        <a href="#">إكسسوارات</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Center logo -->
+            <a href="#" class="nav-logo">
+                <img src="Al-Barrak Logo.jpg" alt="Logo">
+            </a>
+            
+            <!-- Right side navigation -->
+            <div class="nav-right">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-search" id="search-button"></i>
+                </a>
+                
+                <div class="dropdown location-dropdown">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>الموقع</span>
+                    </a>
+                    <div class="dropdown-content">
+                        <p>اختر موقع التوصيل</p>
+                        <select style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                            <option>الرياض</option>
+                            <option>جدة</option>
+                            <option>مكة المكرمة</option>
+                            <option>المدينة المنورة</option>
+                            <option>الدمام</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-user"></i>
+                        <span>حسابي</span>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#">تسجيل الدخول</a>
+                        <a href="#">إنشاء حساب</a>
+                        <a href="#">طلباتي</a>
+                        <a href="#">إعدادات الحساب</a>
+                    </div>
+                </div>
+                
+                <a href="#" class="nav-link">
+                    <i class="fas fa-heart"></i>
+                    <span>المفضلة</span>
+                </a>
+
+                <a href="#" class="nav-link">
+                    <div class="cart-indicator">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                    <span>0.00 ر.س</span>
+                </a>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="dropdown">
+                <a href="#" class="nav-link">
+                    <span>الأدوات الصحية</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#">أدوات صحية 1</a>
+                    <a href="#">أدوات صحية 2</a>
+                    <a href="#">أدوات صحية 3</a>
+                    <a href="#">أدوات صحية 4</a>
+                    <a href="#">أدوات صحية 5</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <a href="#" class="nav-link">
+                    <span>السيراميك والبورسلين</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#">سيراميك 1</a>
+                    <a href="#">سيراميك 2</a>
+                    <a href="#">بورسلين 1</a>
+                    <a href="#">بورسلين 2</a>
+                    <a href="#">أرضيات</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <a href="#" class="nav-link">
+                    <span>مطابخ إيطالية</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#">مطابخ حديثة</a>
+                    <a href="#">مطابخ كلاسيكية</a>
+                    <a href="#">مطابخ خشبية</a>
+                    <a href="#">مطابخ مودرن</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <a href="#" class="nav-link">
+                    <span>الديكور والموزاييك</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#">ديكور داخلي</a>
+                    <a href="#">ديكور خارجي</a>
+                    <a href="#">موزاييك</a>
+                    <a href="#">إكسسوارات</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>الموقع</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <p>اختر موقع التوصيل</p>
+                    <select style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                        <option>الرياض</option>
+                        <option>جدة</option>
+                        <option>مكة المكرمة</option>
+                        <option>المدينة المنورة</option>
+                        <option>الدمام</option>
+                    </select>
+                </div>
+            </div>
+            
+            <a href="#" class="nav-link">
+                <i class="fas fa-heart"></i>
+                <span>المفضلة</span>
+            </a>
+            
+            <a href="#" class="nav-link">
+                <i class="fas fa-shopping-cart"></i>
+                <span>السلة (0)</span>
+                <span>0.00 ر.س</span>
+            </a>
+            
+            <div class="dropdown">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user"></i>
+                    <span>حسابي</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#">تسجيل الدخول</a>
+                    <a href="#">إنشاء حساب</a>
+                    <a href="#">طلباتي</a>
+                    <a href="#">إعدادات الحساب</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Backdrop -->
+        <div class="mobile-menu-backdrop" id="mobile-menu-backdrop"></div>
+    
+        <!-- Search Extension -->
+        <div class="search-extension" id="search-extension">
+            <button id="exit-search-extension-button"><i class="fa-solid fa-x"></i></button>
+            <h3>ابحث عن المنتجات</h3>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="اكتب ما تبحث عنه...">
+            </div>
+            <div id="search-results" class="search-results">
+                <!-- Search results will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Sections -->
+    <div class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>مرحبًا بكم في البراك للسيراميك</h1>
+                <p>اكتشف أحدث تشكيلاتنا من السيراميك، البورسلين، الأدوات الصحية والمطابخ الإيطالية بجودة عالية وأسعار تنافسية</p>
+                <a href="#" class="cta-button">تسوق الآن</a>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <h2 class="section-title">تصفح حسب الفئة</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-img" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                    <div class="category-info">
+                        <h3>الأدوات الصحية</h3>
+                        <a href="#" class="cta-button">عرض المنتجات</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                    <div class="category-info">
+                        <h3>السيراميك</h3>
+                        <a href="#" class="cta-button">عرض المنتجات</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                    <div class="category-info">
+                        <h3>المطابخ الإيطالية</h3>
+                        <a href="#" class="cta-button">عرض المنتجات</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                    <div class="category-info">
+                        <h3>الديكور والموزاييك</h3>
+                        <a href="#" class="cta-button">عرض المنتجات</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products-section">
+            <h2 class="section-title">منتجات مميزة</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                    <div class="product-info">
+                        <h3>سيراميك فاخر</h3>
+                        <p class="product-price">150 ر.س</p>
+                        <button class="add-to-cart">أضف إلى السلة</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                    <div class="product-info">
+                        <h3>حوض حمام إيطالي</h3>
+                        <p class="product-price">450 ر.س</p>
+                        <button class="add-to-cart">أضف إلى السلة</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                    <div class="product-info">
+                        <h3>مطبخ خشبي كلاسيكي</h3>
+                        <p class="product-price">1200 ر.س</p>
+                        <button class="add-to-cart">أضف إلى السلة</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                    <div class="product-info">
+                        <h3>موزاييك ديكوري</h3>
+                        <p class="product-price">85 ر.س</p>
+                        <button class="add-to-cart">أضف إلى السلة</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Offers Section -->
+        <section class="offers-section">
+            <div class="offer-banner">
+                <h2>عروض خاصة!</h2>
+                <p>احصل على خصم 20% على جميع منتجات السيراميك هذا الأسبوع فقط</p>
+                <a href="#" class="cta-button">استفد من العرض</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>عن الشركة</h3>
+                <ul>
+                    <li><a href="#">من نحن</a></li>
+                    <li><a href="#">فروعنا</a></li>
+                    <li><a href="#">وظائف</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>خدمة العملاء</h3>
+                <ul>
+                    <li><a href="#">الأسئلة الشائعة</a></li>
+                    <li><a href="#">سياسة الإرجاع</a></li>
+                    <li><a href="#">شروط وأحكام</a></li>
+                    <li><a href="#">سياسة الخصوصية</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="#">الأدوات الصحية</a></li>
+                    <li><a href="#">السيراميك</a></li>
+                    <li><a href="#">المطابخ</a></li>
+                    <li><a href="#">الديكور</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>تواصل معنا</h3>
+                <p>info@albarrak.com</p>
+                <p>+966 12 345 6789</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2023 البراك للسيراميك. جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample product data
+        const products = [
+            { id: 1, name: "أدوات صحية 1", category: "الأدوات الصحية", price: "150 ر.س" },
+            { id: 2, name: "أدوات صحية 2", category: "الأدوات الصحية", price: "200 ر.س" },
+            { id: 3, name: "سيراميك 1", category: "السيراميك والبورسلين", price: "75 ر.س" },
+            { id: 4, name: "سيراميك 2", category: "السيراميك والبورسلين", price: "85 ر.س" },
+            { id: 5, name: "مطابخ حديثة", category: "مطابخ إيطالية", price: "1200 ر.س" },
+            { id: 6, name: "ديكور داخلي", category: "الديكور والموزاييك", price: "350 ر.س" }
+        ];
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            mobileMenuBackdrop.classList.toggle('active');
+        });
+        
+        mobileMenuBackdrop.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+            mobileMenuBackdrop.classList.remove('active');
+        });
+
+        // Dropdown functionality for both desktop and mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdowns = document.querySelectorAll('.dropdown');
+            
+            // Close all dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown')) {
+                    dropdowns.forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            });
+            
+            // Toggle dropdowns on click
+            dropdowns.forEach(dropdown => {
+                const trigger = dropdown.querySelector('a');
+                
+                trigger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Close all other dropdowns
+                    dropdowns.forEach(otherDropdown => {
+                        if (otherDropdown !== dropdown) {
+                            otherDropdown.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    dropdown.classList.toggle('active');
+                });
+            });
+        });
+
+        // Search functionality
+        const searchButton = document.getElementById('search-button');
+        const searchExtension = document.getElementById('search-extension');
+        const exitSearchButton = document.getElementById('exit-search-extension-button');
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+
+        // Toggle search extension
+        searchButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            searchExtension.classList.add('active');
+            searchInput.focus();
+        });
+
+        // Close search extension
+        exitSearchButton.addEventListener('click', function() {
+            searchExtension.classList.remove('active');
+        });
+
+        // Search input handler
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.trim().toLowerCase();
+            
+            if (searchTerm.length === 0) {
+                searchResults.innerHTML = '';
+                return;
+            }
+            
+            // Filter products
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(searchTerm) || 
+                product.category.toLowerCase().includes(searchTerm)
+            );
+            
+            // Display results
+            displaySearchResults(filteredProducts);
+        });
+
+        // Display search results
+        function displaySearchResults(results) {
+            if (results.length === 0) {
+                searchResults.innerHTML = '<p style="text-align: center; width: 100%;">لا توجد نتائج مطابقة</p>';
+                return;
+            }
+            
+            searchResults.innerHTML = '';
+            
+            results.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.className = 'search-result-item';
+                productElement.innerHTML = `
+                    <h4>${product.name}</h4>
+                    <p>${product.category}</p>
+                    <p><strong>${product.price}</strong></p>
+                `;
+                searchResults.appendChild(productElement);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Only apply click functionality for mobile
+            if (window.innerWidth <= 768) {
+                const dropdowns = document.querySelectorAll('.dropdown');
+                
+                // Close all dropdowns when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('.dropdown')) {
+                        dropdowns.forEach(dropdown => {
+                            dropdown.classList.remove('active');
+                        });
+                    }
+                });
+                
+                // Toggle dropdowns on click
+                dropdowns.forEach(dropdown => {
+                    const trigger = dropdown.querySelector('a');
+                    
+                    trigger.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        // Close all other dropdowns
+                        dropdowns.forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown) {
+                                otherDropdown.classList.remove('active');
+                            }
+                        });
+                        
+                        // Toggle current dropdown
+                        dropdown.classList.toggle('active');
+                    });
+                });
+            }
+        });
+
+        // Scroll functionality for navbar color change
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.main-nav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
