@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Al-Barrak</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="CSS/home.css" />
+        <link rel="stylesheet" href="CSS/slider-1.css">
+        <script src="Javascript/slider-1.js"></script>
+    </head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar-wrapper">
+        <nav class="main-nav">
+            <!-- Mobile menu button -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <!-- Left side navigation (hidden on mobile) -->
+            <div class="nav-left">
+                <div class="dropdown">
+                    <a href="#" class="nav-link">
+                        <span>الأدوات الصحية</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#">أدوات صحية 1</a>
+                        <a href="#">أدوات صحية 2</a>
+                        <a href="#">أدوات صحية 3</a>
+                        <a href="#">أدوات صحية 4</a>
+                        <a href="#">أدوات صحية 5</a>
+                    </div>
+                </div>
+                
+                <div class="dropdown">
+                    <a href="#" class="nav-link">
+                        <span>السيراميك والبورسلين</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#">سيراميك 1</a>
+                        <a href="#">سيراميك 2</a>
+                        <a href="#">بورسلين 1</a>
+                        <a href="#">بورسلين 2</a>
+                        <a href="#">أرضيات</a>
+                    </div>
+                </div>
+                
+                <div class="dropdown">
+                    <a href="#" class="nav-link">
+                        <span>مطابخ إيطالية</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#">مطابخ حديثة</a>
+                        <a href="#">مطابخ كلاسيكية</a>
+                        <a href="#">مطابخ خشبية</a>
+                        <a href="#">مطابخ مودرن</a>
+                    </div>
+                </div>
+                
+                <div class="dropdown">
+                    <a href="#" class="nav-link">
+                        <span>الديكور والموزاييك</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#">ديكور داخلي</a>
+                        <a href="#">ديكور خارجي</a>
+                        <a href="#">موزاييك</a>
+                        <a href="#">إكسسوارات</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Center logo -->
+            <a href="#" class="nav-logo">
+                <img src="Al-Barrak Logo.png" alt="Logo">
+            </a>
+            
+            <!-- Right side navigation -->
+            <div class="nav-right">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-search" id="search-button"></i>
+                </a>
+                
+                <div class="dropdown location-dropdown">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>الموقع</span>
+                    </a>
+                    <div class="dropdown-content">
+                        <p>اختر موقع التوصيل</p>
+                        <select style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                            <option>الرياض</option>
+                            <option>جدة</option>
+                            <option>مكة المكرمة</option>
+                            <option>المدينة المنورة</option>
+                            <option>الدمام</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-user"></i>
+                        <span>حسابي</span>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#">تسجيل الدخول</a>
+                        <a href="#">إنشاء حساب</a>
+                        <a href="#">طلباتي</a>
+                        <a href="#">إعدادات الحساب</a>
+                    </div>
+                </div>
+                
+                <a href="#" class="nav-link">
+                    <i class="fas fa-heart"></i>
+                    <span>المفضلة</span>
+                </a>
+
+                <a href="#" class="nav-link">
+                    <div class="cart-indicator">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                   
+                </a>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="dropdown">
+                <a href="#" class="nav-link">
+                    <span>الأدوات الصحية</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#">أدوات صحية 1</a>
+                    <a href="#">أدوات صحية 2</a>
+                    <a href="#">أدوات صحية 3</a>
+                    <a href="#">أدوات صحية 4</a>
+                    <a href="#">أدوات صحية 5</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <a href="#" class="nav-link">
+                    <span>السيراميك والبورسلين</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#">سيراميك 1</a>
+                    <a href="#">سيراميك 2</a>
+                    <a href="#">بورسلين 1</a>
+                    <a href="#">بورسلين 2</a>
+                    <a href="#">أرضيات</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <a href="#" class="nav-link">
+                    <span>مطابخ إيطالية</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#">مطابخ حديثة</a>
+                    <a href="#">مطابخ كلاسيكية</a>
+                    <a href="#">مطابخ خشبية</a>
+                    <a href="#">مطابخ مودرن</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <a href="#" class="nav-link">
+                    <span>الديكور والموزاييك</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#">ديكور داخلي</a>
+                    <a href="#">ديكور خارجي</a>
+                    <a href="#">موزاييك</a>
+                    <a href="#">إكسسوارات</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>الموقع</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <p>اختر موقع التوصيل</p>
+                    <select style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                        <option>الرياض</option>
+                        <option>جدة</option>
+                        <option>مكة المكرمة</option>
+                        <option>المدينة المنورة</option>
+                        <option>الدمام</option>
+                    </select>
+                </div>
+            </div>
+            
+            <a href="#" class="nav-link">
+                <i class="fas fa-heart"></i>
+                <span>المفضلة</span>
+            </a>
+            
+            <a href="#" class="nav-link">
+                <i class="fas fa-shopping-cart"></i>
+                <span>السلة (0)</span>
+                <span>0.00 ر.س</span>
+            </a>
+            
+            <div class="dropdown">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user"></i>
+                    <span>حسابي</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#">تسجيل الدخول</a>
+                    <a href="#">إنشاء حساب</a>
+                    <a href="#">طلباتي</a>
+                    <a href="#">إعدادات الحساب</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Backdrop -->
+        <div class="mobile-menu-backdrop" id="mobile-menu-backdrop"></div>
+    
+        <!-- Search Extension -->
+        <div class="search-extension" id="search-extension">
+            <button id="exit-search-extension-button"><i class="fa-solid fa-x"></i></button>
+            <h3>ابحث عن المنتجات</h3>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="اكتب ما تبحث عنه...">
+            </div>
+            <div id="search-results" class="search-results">
+                <!-- Search results will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Sections -->
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide">
+                <img src="images/kern.png" alt="">
+            </div>
+            <div class="slide">
+                <img src="images/error pintos.png" alt="">
+            </div>
+            <div class="slide">
+                <img src="images/14789.png" alt="">
+            </div>
+        </div>
+        
+        <div class="dots">
+            <div class="dot active" data-index="0"></div>
+            <div class="dot" data-index="1"></div>
+            <div class="dot" data-index="2"></div>
+        </div>
+    </div>
+
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <h2 class="section-title">تصفح حسب الفئة</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-img" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                    <div class="category-info">
+                        <h3>الأدوات الصحية</h3>
+                        <a href="#" class="cta-button">عرض المنتجات</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                    <div class="category-info">
+                        <h3>السيراميك</h3>
+                        <a href="#" class="cta-button">عرض المنتجات</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                    <div class="category-info">
+                        <h3>المطابخ الإيطالية</h3>
+                        <a href="#" class="cta-button">عرض المنتجات</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                    <div class="category-info">
+                        <h3>الديكور والموزاييك</h3>
+                        <a href="#" class="cta-button">عرض المنتجات</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products-section">
+            <h2 class="section-title">منتجات مميزة</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                    <div class="product-info">
+                        <h3>سيراميك فاخر</h3>
+                        <p class="product-price">150 ر.س</p>
+                        <button class="add-to-cart">أضف إلى السلة</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                    <div class="product-info">
+                        <h3>حوض حمام إيطالي</h3>
+                        <p class="product-price">450 ر.س</p>
+                        <button class="add-to-cart">أضف إلى السلة</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                    <div class="product-info">
+                        <h3>مطبخ خشبي كلاسيكي</h3>
+                        <p class="product-price">1200 ر.س</p>
+                        <button class="add-to-cart">أضف إلى السلة</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                    <div class="product-info">
+                        <h3>موزاييك ديكوري</h3>
+                        <p class="product-price">85 ر.س</p>
+                        <button class="add-to-cart">أضف إلى السلة</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Offers Section -->
+        <section class="offers-section">
+            <div class="offer-banner">
+                <h2>عروض خاصة!</h2>
+                <p>احصل على خصم 20% على جميع منتجات السيراميك هذا الأسبوع فقط</p>
+                <a href="#" class="cta-button">استفد من العرض</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>عن الشركة</h3>
+                <ul>
+                    <li><a href="#">من نحن</a></li>
+                    <li><a href="#">فروعنا</a></li>
+                    <li><a href="#">وظائف</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>خدمة العملاء</h3>
+                <ul>
+                    <li><a href="#">الأسئلة الشائعة</a></li>
+                    <li><a href="#">سياسة الإرجاع</a></li>
+                    <li><a href="#">شروط وأحكام</a></li>
+                    <li><a href="#">سياسة الخصوصية</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="#">الأدوات الصحية</a></li>
+                    <li><a href="#">السيراميك</a></li>
+                    <li><a href="#">المطابخ</a></li>
+                    <li><a href="#">الديكور</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>تواصل معنا</h3>
+                <p>info@albarrak.com</p>
+                <p>+966 12 345 6789</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2023 البراك للسيراميك. جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample product data
+        const products = [
+            { id: 1, name: "أدوات صحية 1", category: "الأدوات الصحية", price: "150 ر.س" },
+            { id: 2, name: "أدوات صحية 2", category: "الأدوات الصحية", price: "200 ر.س" },
+            { id: 3, name: "سيراميك 1", category: "السيراميك والبورسلين", price: "75 ر.س" },
+            { id: 4, name: "سيراميك 2", category: "السيراميك والبورسلين", price: "85 ر.س" },
+            { id: 5, name: "مطابخ حديثة", category: "مطابخ إيطالية", price: "1200 ر.س" },
+            { id: 6, name: "ديكور داخلي", category: "الديكور والموزاييك", price: "350 ر.س" }
+        ];
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            mobileMenuBackdrop.classList.toggle('active');
+        });
+        
+        mobileMenuBackdrop.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+            mobileMenuBackdrop.classList.remove('active');
+        });
+
+        // Dropdown functionality for both desktop and mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdowns = document.querySelectorAll('.dropdown');
+            
+            // Close all dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown')) {
+                    dropdowns.forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            });
+            
+            // Toggle dropdowns on click
+            dropdowns.forEach(dropdown => {
+                const trigger = dropdown.querySelector('a');
+                
+                trigger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Close all other dropdowns
+                    dropdowns.forEach(otherDropdown => {
+                        if (otherDropdown !== dropdown) {
+                            otherDropdown.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    dropdown.classList.toggle('active');
+                });
+            });
+        });
+
+        // Search functionality
+        const searchButton = document.getElementById('search-button');
+        const searchExtension = document.getElementById('search-extension');
+        const exitSearchButton = document.getElementById('exit-search-extension-button');
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+
+        // Toggle search extension
+        searchButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            searchExtension.classList.add('active');
+            searchInput.focus();
+        });
+
+        // Close search extension
+        exitSearchButton.addEventListener('click', function() {
+            searchExtension.classList.remove('active');
+        });
+
+        // Search input handler
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.trim().toLowerCase();
+            
+            if (searchTerm.length === 0) {
+                searchResults.innerHTML = '';
+                return;
+            }
+            
+            // Filter products
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(searchTerm) || 
+                product.category.toLowerCase().includes(searchTerm)
+            );
+            
+            // Display results
+            displaySearchResults(filteredProducts);
+        });
+
+        // Display search results
+        function displaySearchResults(results) {
+            if (results.length === 0) {
+                searchResults.innerHTML = '<p style="text-align: center; width: 100%;">لا توجد نتائج مطابقة</p>';
+                return;
+            }
+            
+            searchResults.innerHTML = '';
+            
+            results.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.className = 'search-result-item';
+                productElement.innerHTML = `
+                    <h4>${product.name}</h4>
+                    <p>${product.category}</p>
+                    <p><strong>${product.price}</strong></p>
+                `;
+                searchResults.appendChild(productElement);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Only apply click functionality for mobile
+            if (window.innerWidth <= 768) {
+                const dropdowns = document.querySelectorAll('.dropdown');
+                
+                // Close all dropdowns when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('.dropdown')) {
+                        dropdowns.forEach(dropdown => {
+                            dropdown.classList.remove('active');
+                        });
+                    }
+                });
+                
+                // Toggle dropdowns on click
+                dropdowns.forEach(dropdown => {
+                    const trigger = dropdown.querySelector('a');
+                    
+                    trigger.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        // Close all other dropdowns
+                        dropdowns.forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown) {
+                                otherDropdown.classList.remove('active');
+                            }
+                        });
+                        
+                        // Toggle current dropdown
+                        dropdown.classList.toggle('active');
+                    });
+                });
+            }
+        });
+
+        // Scroll functionality for navbar color change
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.main-nav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
